@@ -21,9 +21,7 @@ class AuthController extends Controller
 {
     use ApiResponseTrait;
 
-    // ─────────────────────────────────────────
-    // POST /api/auth/register
-    // ─────────────────────────────────────────
+
     public function register(RegisterRequest $request, RegisterAction $action): JsonResponse
     {
         $user = $action->execute($request->validated());
@@ -35,9 +33,8 @@ class AuthController extends Controller
         );
     }
 
-    // ─────────────────────────────────────────
-    // POST /api/auth/verify-otp
-    // ─────────────────────────────────────────
+
+
     public function verifyOtp(VerifyOtpRequest $request, VerifyOtpAction $action): JsonResponse
     {
         $data   = $request->validated();
@@ -60,9 +57,7 @@ class AuthController extends Controller
         return $this->successResponse(null, 'OTP verified. You can now reset your password.');
     }
 
-    // ─────────────────────────────────────────
-    // POST /api/auth/login
-    // ─────────────────────────────────────────
+
     public function login(LoginRequest $request, LoginAction $action): JsonResponse
     {
         $data   = $request->validated();
@@ -81,9 +76,7 @@ class AuthController extends Controller
         );
     }
 
-    // ─────────────────────────────────────────
-    // POST /api/auth/forgot-password
-    // ─────────────────────────────────────────
+
     public function forgotPassword(ForgotPasswordRequest $request, ForgotPasswordAction $action): JsonResponse
     {
         $action->execute($request->validated()['phone']);
@@ -91,9 +84,7 @@ class AuthController extends Controller
         return $this->successResponse(null, 'OTP sent to your phone.');
     }
 
-    // ─────────────────────────────────────────
-    // POST /api/auth/reset-password
-    // ─────────────────────────────────────────
+
     public function resetPassword(ResetPasswordRequest $request, ResetPasswordAction $action): JsonResponse
     {
         $data   = $request->validated();
@@ -106,9 +97,7 @@ class AuthController extends Controller
         return $this->successResponse(null, 'Password reset successfully.');
     }
 
-    // ─────────────────────────────────────────
-    // POST /api/auth/logout
-    // ─────────────────────────────────────────
+
     public function logout(Request $request): JsonResponse
     {
         $request->user()->currentAccessToken()->delete();
@@ -116,9 +105,7 @@ class AuthController extends Controller
         return $this->successResponse(null, 'Logged out successfully.');
     }
 
-    // ─────────────────────────────────────────
-    // GET /api/auth/me
-    // ─────────────────────────────────────────
+
     public function me(Request $request): JsonResponse
     {
         return $this->successResponse($request->user());

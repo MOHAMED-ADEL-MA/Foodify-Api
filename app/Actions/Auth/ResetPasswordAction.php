@@ -4,6 +4,7 @@ namespace App\Actions\Auth;
 
 use App\Models\User;
 use App\Services\OtpService;
+use Illuminate\Support\Facades\Hash;
 
 class ResetPasswordAction
 {
@@ -23,7 +24,7 @@ class ResetPasswordAction
 
 
         User::where('phone', $phone)->update([
-            'password' => $password,
+            'password' => Hash::make($password),
         ]);
 
         return ['success' => true];
