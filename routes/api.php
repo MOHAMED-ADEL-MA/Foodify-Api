@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\FavoriteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CartController;
@@ -37,4 +38,11 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('{meal_id}',   [CartController::class, 'remove']);
         Route::delete('/',           [CartController::class, 'clear']);
     });
+
+    // Favorites
+    Route::prefix('favorites')->group(function () {
+        Route::get('/',           [FavoriteController::class, 'index']);
+        Route::post('/',          [FavoriteController::class, 'add']);
+        Route::delete('{meal_id}',[FavoriteController::class, 'remove']);
+});
 });
