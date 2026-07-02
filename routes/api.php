@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\MealController;
 
 Route::prefix('auth')->group(function () {
@@ -21,12 +22,19 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('me',      [AuthController::class, 'me']);
     });
 
-
-
     // Meals
     Route::prefix('meals')->group(function () {
         Route::get('categories', [MealController::class, 'categories']);
         Route::get('/',          [MealController::class, 'index']);
         Route::get('{meal}',     [MealController::class, 'show']);
+    });
+
+    // Cart
+    Route::prefix('cart')->group(function () {
+        Route::get('/',              [CartController::class, 'index']);
+        Route::post('/',             [CartController::class, 'add']);
+        Route::patch('{meal_id}',    [CartController::class, 'update']);
+        Route::delete('{meal_id}',   [CartController::class, 'remove']);
+        Route::delete('/',           [CartController::class, 'clear']);
     });
 });
