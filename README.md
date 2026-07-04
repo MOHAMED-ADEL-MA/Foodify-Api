@@ -159,11 +159,11 @@ PAYMOB_HMAC_SECRET=your_hmac_secret
 
 | Method | Endpoint                    | Description                 | Auth |
 | ------ | --------------------------- | --------------------------- | ---- |
-| POST   | `/api/auth/register`        | Register new user           | ✅   |
-| POST   | `/api/auth/verify-otp`      | Verify OTP code             | ✅   |
-| POST   | `/api/auth/login`           | Login with phone & password | ✅   |
-| POST   | `/api/auth/forgot-password` | Send OTP for password reset | ✅   |
-| POST   | `/api/auth/reset-password`  | Reset password with OTP     | ✅   |
+| POST   | `/api/auth/register`        | Register new user           | ❌   |
+| POST   | `/api/auth/verify-otp`      | Verify OTP code             | ❌   |
+| POST   | `/api/auth/login`           | Login with phone & password | ❌   |
+| POST   | `/api/auth/forgot-password` | Send OTP for password reset | ❌   |
+| POST   | `/api/auth/reset-password`  | Reset password with OTP     | ❌   |
 | POST   | `/api/auth/logout`          | Logout current session      | ✅   |
 | GET    | `/api/auth/me`              | Get authenticated user      | ✅   |
 
