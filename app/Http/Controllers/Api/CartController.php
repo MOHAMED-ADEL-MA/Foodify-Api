@@ -28,6 +28,9 @@ class CartController extends Controller
                 'subtotal'  => round($item->meal->price * $item->quantity, 2),
             ]);
 
+            if ($items->isEmpty())
+                return $this->successResponse($items,'Your Cart is empty');
+
         $subtotal = $items->sum('subtotal');
         $total    = $subtotal + ($items->isEmpty() ? 0 : $this->deliveryFee);
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\FavoriteController;
+use App\Http\Controllers\Api\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CartController;
@@ -44,5 +45,12 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/',           [FavoriteController::class, 'index']);
         Route::post('/',          [FavoriteController::class, 'add']);
         Route::delete('{meal_id}',[FavoriteController::class, 'remove']);
-});
+    });
+
+    // Orders
+    Route::prefix('orders')->group(function () {
+        Route::post('/',        [OrderController::class, 'store']);
+        Route::get('/',         [OrderController::class, 'index']);
+        Route::get('{order}',   [OrderController::class, 'show']);
+    });
 });
