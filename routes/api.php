@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\FavoriteController;
 use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CartController;
@@ -22,6 +23,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('auth')->group(function () {
         Route::post('logout', [AuthController::class, 'logout']);
         Route::get('me',      [AuthController::class, 'me']);
+    });
+
+    // Profile
+    Route::prefix('profile')->group(function () {
+        Route::get('/',               [ProfileController::class, 'show']);
+        Route::post('/',              [ProfileController::class, 'update']);
+        Route::post('change-password',[ProfileController::class, 'changePassword']);
+        Route::get('orders',          [ProfileController::class, 'orders']);
     });
 
     // Meals
